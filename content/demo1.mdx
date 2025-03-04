@@ -1,36 +1,85 @@
-**This is a [Next.js](https://nextjs.org) project bootstrapped** with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 打家劫舍
 
-##### Getting Started
+## **问题描述：**
 
-## First, run the development server:
+你是一个专业的小偷，计划偷窃沿街的房屋。每间房内都藏有一定的现金，影响你偷窃的唯一制约因素就是相邻的房屋装有相互连通的防盗系统，**如果两间相邻的房屋在同一晚上被小偷闯入，系统会自动报警**。
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+给定一个代表每个房屋存放金额的非负整数数组，计算你 **不触动警报装置的情况下** ，一夜之内能够偷窃到的最高金额。
+
+**示例 1：**
+
+```
+输入：[1,2,3,1]
+输出：4
+解释：偷窃 1 号房屋 (金额 = 1) ，然后偷窃 3 号房屋 (金额 = 3)。
+     偷窃到的最高金额 = 1 + 3 = 4 。
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**示例 2：**
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+输入：[2,7,9,3,1]
+输出：12
+解释：偷窃 1 号房屋 (金额 = 2), 偷窃 3 号房屋 (金额 = 9)，接着偷窃 5 号房屋 (金额 = 1)。
+     偷窃到的最高金额 = 2 + 9 + 1 = 12 。
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
 
-## Learn More
+**提示：**
 
-To learn more about Next.js, take a look at the following resources:
+- `1 <= nums.length <= 100`
+- `0 <= nums[i] <= 400`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## **解法思路：**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+这道题是典型的动态规划的题目，对于动态规划的题目最重要的是写出子问题递推关系
+题目要求能够偷窃到的最高金额，可以确定的是，对于最后一间房屋，要么偷了，要么没偷。
+1.如果没偷最后一间房屋的话，那么最高金额就等于前*n - 1*房屋偷窃的最高金额
+2.如果偷了最后一间房屋的话，那么与其相邻的倒数第二间房屋一定不能偷，那么最高金额等于最后一间房屋的金额加上前*n - 2*房屋偷窃的最高金额
+**定义子问题f(k)：偷窃前k个房屋的最高金额**
+那么原问题就是*f(n)*，根据上文描述，可以得到
+*f(n) = max(f(n - 1), nums[n] + f(n - 2))*
+由于原问题同样也是一个参数为n的子问题，所以此关系式可以推广到任意的子问题，可以得到
+*f(k) = max(f(k - 1), nums[k] + f(k - 2))*
+**边界问题**
 
-## Deploy on Vercel
+1. 当n = 1时，此时只有一间房屋，可以直接偷窃，故为*nums[0]*
+2. 当n = 2时，此时有两间房屋，最高金额为金额更多的房屋，故为*max(nums[0], nums[1])*
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+**解法一：**
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```java
+class Solution {
+    public int rob(int[] nums) {
+        if(nums.length == 1) return nums[0];
+        int dp[] = new int[nums.length];
+        dp[0] = nums[0];
+        dp[1] = Math.max(nums[0], nums[1]);
+        for(int i = 2; i < nums.length; i++){
+            dp[i] = Math.max(dp[i - 1], nums[i] + dp[i - 2]);
+        }
+        return dp[nums.length - 1];
+    }
+}
+```
+
+本题还可以继续进行空间优化，可以观察到在计算*f(k*)时，只会涉及到*f(k - 1)*和*f(k - 2)*，而*f(k - 2)*之前的元素不会参与计算，可以使用两个变量保存两个子问题的结果，并不断向前推进，更新自身的值，最终计算出最高金额。
+这种思想被称作**滚动数组思想**，简单来说就是在dp方程中找到一种关系，可以用新的数据不断覆盖旧的数据来减少空间的使用
+
+**解法二：**
+
+```java
+class Solution {
+    public int rob(int[] nums) {
+        if(nums.length == 1) return nums[0];
+        int prev = nums[0];
+        int curr = Math.max(nums[0], nums[1]);
+        for(int i = 2; i < nums.length; i++){
+            int temp = curr;
+            curr = Math.max(curr, nums[i] + prev);
+            prev = temp;
+        }
+        return curr;
+    }
+}
+```
