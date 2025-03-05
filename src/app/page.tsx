@@ -1,5 +1,5 @@
-import FooterBar from "./components/footer-bar";
-import TopBar from "./components/top-bar";
+import FooterBar from "../components/footer-bar";
+import TopBar from "../components/top-bar";
 import React from "react";
 
 export default function Home({ children }: Readonly<{

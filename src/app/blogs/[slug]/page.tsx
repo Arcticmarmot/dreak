@@ -1,3 +1,5 @@
+import MdxLayout from "../../../components/mdx-layout";
+
 export default async function Page({
     params,
 }: {
@@ -5,7 +7,7 @@ export default async function Page({
 }) {
     const { slug } = await params
     const { default: Post } = await import(`@/content/${slug}.mdx`)
-    return <Post/>
+    return <MdxLayout><Post/></MdxLayout>
 }
 
 export function generateStaticParams() {
