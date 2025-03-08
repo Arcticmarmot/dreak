@@ -1,21 +1,11 @@
-import FooterBar from "../components/footer-bar";
-import TopBar from "../components/top-bar";
 import React from "react";
 
-export default function Home({ children }: Readonly<{
-    children: React.ReactNode;
-}>) {
+export default function Home() {
   return (
-    <div id="app" className="min-h-screen min-w-screen bg-white">
-        <header>
-            <TopBar/>
-        </header>
-        <section>
-            {children}
-        </section>
-        <footer>
-            <FooterBar/>
-        </footer>
+    <div id="app w-full h-full ">
+      <div className="">
+        <img src="/imgs/bg.jpg" alt=""/>
+      </div>
     </div>
   );
 }
