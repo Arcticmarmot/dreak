@@ -1,11 +1,28 @@
 @import url('https://fonts.googleapis.com/css2?family=Playwrite+HU:wght@100..400&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Playwrite+HU:wght@100..400&family=Zhi+Mang+Xing&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100..900&display=swap');
+
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 @custom-variant dark (&:where(.dark, .dark *));
 
+@layer base {
+    html, body {
+        font-family: 'Noto Sans SC', sans-serif;
+    }
+}
 
 @theme {
     --font-playwrite: "Playwrite HU", "sans-serif";
-    --font-zhi-mang-xing: "Zhi Mang Xing", "sans-serif";
+    --font-noto-sans: "Noto Sans SC", "sans-serif";
+
+    --spacing-top-bar: calc(var(--spacing) * 16);
+    --spacing-footer-bar: calc(var(--spacing) * 8);
+    --spacing-page: calc(100vh - (var(--spacing-top-bar) + var(--spacing-footer-bar)));
+
+    --color-dark-primary: rgba(4, 4, 54, 0.8552);
+    --color-primary: rgba(251, 251, 201, 0.8552);
+
+    --color-plain: oklch(0.921 0.1 17.32);
+    --color-dark-plain: oklch(0.921 0.1 197.32);
+
 }
