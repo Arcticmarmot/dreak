@@ -17,12 +17,23 @@
 
     --spacing-top-bar: calc(var(--spacing) * 16);
     --spacing-footer-bar: calc(var(--spacing) * 8);
-    --spacing-page: calc(100vh - (var(--spacing-top-bar) + var(--spacing-footer-bar)));
+    --spacing-main-height: calc(100vh - (var(--spacing-top-bar) + var(--spacing-footer-bar)));
+    --spacing-main-width: calc(var(--spacing) * 240);
 
-    --color-dark-primary: rgba(4, 4, 54, 0.8552);
-    --color-primary: rgba(251, 251, 201, 0.8552);
 
-    --color-plain: oklch(0.921 0.1 17.32);
-    --color-dark-plain: oklch(0.921 0.1 197.32);
+    --color-primary: rgba(4, 4, 54, 0.5);
+    --color-dark-primary: rgba(4, 4, 54, 0.8);
+    --color-secondary: rgba(251, 251, 201, 0.5);
+    --color-dark-secondary: rgba(230, 230, 181, 0.8);
+    --color-background: #FFFFFF;
+    --color-dark-background: #121212;
+
+
+    /*--color-primary: rgba(251, 251, 201, 0.8552);*/
+    /*--color-dark-primary: rgba(4, 4, 54, 0.8552);*/
+    /*--color-secondary: rgba(0, 0, 0, 0.8552);*/
+    /*--color-dark-secondary: rgba(0, 0, 0, 0.8552);*/
+    /*--color-background: oklch(0.921 0.1 17.32);*/
+    /*--color-dark-background: oklch(0.921 0.1 197.32);*/
 
 }

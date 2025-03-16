@@ -11,7 +11,7 @@ export default function RootLayout({
   return (
       <html lang="en" className='dark'>
       <head>
-          <title>Dreak</title>
+          <title>dreak</title>
           <link rel="icon" href="/imgs/favicon.svg"></link>
           <script async
                   src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2459468019271799"
