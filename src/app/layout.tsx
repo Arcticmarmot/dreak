@@ -9,7 +9,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-      <html lang="en" className='dark'>
+      <html lang="en" className="dark">
       <head>
           <title>dreak</title>
           <link rel="icon" href="/imgs/favicon.svg"></link>
