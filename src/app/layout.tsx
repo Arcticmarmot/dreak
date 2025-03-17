@@ -3,11 +3,7 @@ import React from "react";
 import TopBar from "../components/top-bar";
 import FooterBar from "../components/footer-bar";
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({children}: Readonly<{ children: React.ReactNode}>) {
   return (
       <html lang="en" className="dark">
       <head>
