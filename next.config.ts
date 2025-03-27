@@ -8,7 +8,8 @@ const nextConfig: NextConfig = {
 };
 
 const withMDX = createMDX({
-    options: {}
+    options: {
+    },
 })
 
 export default withMDX(nextConfig);

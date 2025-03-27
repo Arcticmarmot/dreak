@@ -1,4 +1,5 @@
 import MdxLayout from "../../../components/mdx-layout";
+import * as fs from "node:fs";
 
 export default async function Page({
     params,
@@ -6,12 +7,19 @@ export default async function Page({
     params: Promise<{ slug: string }>
 }) {
     const { slug } = await params
-    const { default: Post } = await import(`../../../../content/${slug}.mdx`)
+    const { default: Post, metadata} = await import(`../../../../content/${slug}.mdx`)
+    console.log(metadata)
     return <MdxLayout><Post/></MdxLayout>
 }
 
+
 export function generateStaticParams() {
-    return [{ slug: 'demo1' }, { slug: 'demo2' }]
+    const slugs: { slug: string; }[] = [];
+    fs.readdirSync('content').forEach(file => {
+        file = file.split('.')[0];
+        slugs.push({slug: file});
+    })
+    return slugs;
 }
 
 export const dynamicParams = false
