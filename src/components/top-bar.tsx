@@ -17,16 +17,16 @@ export default function TopBar(){
                 </Link>
                 <div className="routes h-full w-96 flex items-center justify-center">
                     <Link href="/">
-                        <p className="font-bold text-gray-50 text-xl mx-4">主页</p>
+                        <p className="font-bold text-gray-50 text-xl mx-4">Home</p>
                     </Link>
                     <Link href="/blogs">
-                        <p className="font-bold text-gray-50 text-xl mx-4">路径</p>
+                        <p className="font-bold text-gray-50 text-xl mx-4">Step</p>
                     </Link>
                     <Link href="/">
-                        <p className="font-bold text-gray-50 text-xl mx-4">碎片</p>
+                        <p className="font-bold text-gray-50 text-xl mx-4">Clip</p>
                     </Link>
                     <Link href="/">
-                        <p className="font-bold text-gray-50 text-xl mx-4">关于</p>
+                        <p className="font-bold text-gray-50 text-xl mx-4">Info</p>
                     </Link>
                 </div>
                 <div className="options h-full w-80 flex justify-end items-center">
@@ -57,7 +57,6 @@ export default function TopBar(){
                     <a className="ml-5" href="https://github.com/Arcticmarmot" title="https://github.com/Arcticmarmot">
                         <GithubIcon className="w-6"></GithubIcon>
                     </a>
-
                 </div>
             </div>
         </div>

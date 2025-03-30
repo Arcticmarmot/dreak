@@ -1,14 +1,42 @@
 import React from "react";
 import Link from "next/link";
+import {GenerateStepGroups} from "../../constants/func";
+import {MetadataGroup} from "../../constants/interfaces";
+
+function Group({ group } : { group: MetadataGroup }) {
+    return (
+        <div className="w-full mt-10">
+            <p className="text-3xl font-bold">{group.name}</p>
+            <div className="">
+                {group.list.map((item, i) => {
+                    return (
+                        <div className="mt-5" key={i}>
+                            <Link href="/" key={i} className="flex justify-between items-center px-10">
+                                <p className="text-xl pr-5">{item.title}</p>
+                                {/*<p className="text-2xl">{'-'.repeat(80 - item.title.length)}</p>*/}
+                                <div className="h-0.5 flex-1  border-b border-dashed  border-spacing-0.5 border-dark-background dark:border-background"></div>
+                                <p className="text-xl pl-5">{item.createTime}</p>
+                            </Link>
+                        </div>
+                    )
+                })}
+            </div>
+        </div>
+    )
+}
 
 export default function Blogs() {
+    const groups = GenerateStepGroups();
+    console.log(groups);
     return (
-        <div className="w-full h-full bg-background dark:bg-dark-background">
-            <div className="h-main-height flex flex-col items-center pt-10">
-                <p className="text-2xl font-bold">目录</p>
-                <Link href="/blogs/demo1"><p className="text-xl mx-4">打家劫舍</p></Link>
-                <Link href="/blogs/demo2"><p className="text-xl mx-4">一个还在爬山的人</p></Link>
-                <Link href="/blogs/demo3"><p className="text-xl mx-4">物联网安全</p></Link>
+        <div className="w-full h-full bg-background dark:bg-dark-background flex flex-col items-center">
+            <div className="max-w-main-width w-main-width h-main-height pt-10">
+                <p className="text-4xl font-bold flex justify-center">Step</p>
+                {groups.map((group, i) => {
+                    return (
+                        <Group group={group} key={i}></Group>
+                    )
+                })}
             </div>
         </div>
     );
