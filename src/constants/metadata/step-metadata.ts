@@ -22,9 +22,10 @@ export const StepMetadataList: MdxMetadata[] = [
         createTime: "2024-03-18",
     },
     {
-        title: "Ubuntu系统安装",
-        filename: "ubuntu-setup",
+        title: "javascript闭包",
+        filename: "javascript-closure",
         category: "tutorial",
-        createTime: "2024-03-18",
+        createTime: "2024-03-30",
     }
+
 ]

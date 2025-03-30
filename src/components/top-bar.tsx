@@ -19,13 +19,13 @@ export default function TopBar(){
                     <Link href="/">
                         <p className="font-bold text-gray-50 text-xl mx-4">Home</p>
                     </Link>
-                    <Link href="/blogs">
+                    <Link href="/step">
                         <p className="font-bold text-gray-50 text-xl mx-4">Step</p>
                     </Link>
-                    <Link href="/">
+                    <Link href="/clip">
                         <p className="font-bold text-gray-50 text-xl mx-4">Clip</p>
                     </Link>
-                    <Link href="/">
+                    <Link href="/info">
                         <p className="font-bold text-gray-50 text-xl mx-4">Info</p>
                     </Link>
                 </div>

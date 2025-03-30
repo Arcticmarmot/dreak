@@ -1,0 +1,128 @@
+# 闭包
+
+```javascript
+// 闭包
+/**
+ * js使用词法作用域，函数执行时使用的是定义函数时生效的变量作用域，而不是调用函数时生效的变量作用域
+ * 函数对象的内部状态不仅要包括函数代码，还要包括对函数定义所在作用域的引用
+ * 这种函数对象与作用域组合起来解析函数变量的机制，被称为闭包
+ */
+{
+    let scope = "global scope";
+    function checkscope(){
+        let scope = "local scope";
+        function f(){
+            return scope;
+        }
+        return f();
+    }
+    console.log(checkscope()); // => local scope
+}
+{
+    let scope = "global scope";
+    function checkscope(){
+        let scope = "local scope";
+        function f(){
+            return scope;
+        }
+        return f;
+    }
+    console.log(checkscope()()); // => local scope
+}
+{
+    // 使用闭包来保证状态私有，内部函数对它有专有访问权
+    let uniqueInteger = (function() {
+        let counter = 0;
+        return function(){
+            return counter++;
+        }
+    }());
+    console.log(uniqueInteger()); // => 0
+    console.log(uniqueInteger()); // => 1
+
+    // 并非只能由一个闭包独享，可以定义多个嵌套函数，共享相同的定义域
+    function counter(){
+        let n = 0;
+        return {
+            count: function() { return n++; },
+            reset: function() { n = 0;}
+        }
+    }
+    // 两个相互独立的作用域
+    let a = counter();
+    let b = counter(); // 第二次调用创建了一个新的作用域
+    console.log(a.count()); // => 0
+    console.log(b.count()); // => 0
+    console.log(a.count()); // => 1
+    b.reset();
+    console.log(b.count()); // => 0
+    console.log(a.count()); // => 2
+}
+// 使用闭包保存私有状态而非依赖常规对象属性
+{
+    function counter(n){
+        return {
+            get count(){
+                return n++;
+            },
+            set count(m){
+                if(m > n) n = m;
+                else throw Error("count can only be set to a larger value");
+            }
+        };
+    }
+
+    let c = counter(1000);
+    console.log(c.count);
+    // c.count = 100; // => count can only be set to a larger value
+    c.count = 2000;
+}
+
+// 使用闭包的私有属性访问器方法
+// 除了设置方法，没有别的途径可以设置或修改这个变量的值
+{
+    function addPrivateProperty(o, name, predicate){
+        let value; // 属性值
+        o[`get${name}`] = function() { return value; };
+
+        o[`set${name}`] = function(v) {
+            if(predicate && !predicate(v)) {
+                throw new TypeError(`set${name}: invalid value ${v}`);
+            } else {
+                value = v;
+            }
+        }
+    }
+
+    let o = {};
+
+    addPrivateProperty(o, "Name", x => typeof x === "string");
+    o.setName("Frank");
+    console.log(o.getName());
+}
+// 闭包会意外地共享访问不该被共享的变量
+{
+    // 始终返回v的函数
+    function constfunc(v){
+        return () => v;
+    }
+    let funcs = [];
+    for(var i = 0; i < 10; i++){
+        funcs[i] = constfunc(i);
+    }
+    console.log(funcs[5]()); // => 5
+}
+// 与闭包关联的作用域是活的
+// 嵌套函数不会创建作用域的私有副本或截取变量绑定的静态快照
+{
+    function constfuncs(){
+        let funcs = [];
+        for(var i = 0; i < 10; i++){
+            funcs[i] = () => i;
+        }
+        return funcs;
+    }
+    let funcs = constfuncs();
+    console.log(funcs[5]()); // => 10 var作用域是整个函数体，而let/const是块级作用域不会出问题，每次循环会有一个独立的作用域
+}
+```

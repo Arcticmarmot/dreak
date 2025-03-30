@@ -17,6 +17,16 @@
     }
 }
 
+@layer utilities {
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+    .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+}
+
 @theme {
     --font-playwrite: "Playwrite HU", "sans-serif";
     --font-noto-sans: "Noto Sans SC", "sans-serif";

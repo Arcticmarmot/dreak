@@ -1,7 +1,7 @@
 export interface MdxMetadata {
     title: string,
     filename: string,
-    category: "algo" | "tutorial",
+    category: string,
     createTime: string,
 }
 
