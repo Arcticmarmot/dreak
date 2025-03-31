@@ -1,0 +1,41 @@
+# Ubuntu环境下ibus-pinyin配置
+
+## 概况
+
+**Linux**环境下常见的输入法框架有**ibus**和**fcitx**
+
+**fcitx**功能众多，支持较多的定制化功能，响应速度快；不过在采用**GNOME**桌面的环境下(如**Ubuntu**)，需要额外安装配置，并且与系统自带的输入法难以集成
+
+而**ibus**与**GNOME**桌面结合紧密，经过专门设计协调，是**Ubuntu**系统自带的输入法框架，可以做到开箱即用；近年来也在不断改进，支持模糊拼音、智能候选和Lua脚本扩展等
+
+## ibus-pinyin安装
+
+**ibus-pinyin**全称是\*\*Intelligent Pinyin input method for IBus  [https://github.com/libpinyin/ibus-libpinyin](https://github.com/libpinyin/ibus-libpinyin)
+
+下面介绍**Ubuntu**环境下**ibus-pinyin**配置
+
+1\. 首先在设置->**System**\->**Region&Language**中确保安装了中文语言包
+
+2\. 安装完成后，需要重启系统更新语言状态
+
+3\. 设置->**Keyboard**\->**Add Input Source**\->**Intelligent Pinyin**
+
+## ibus-pinyin配置
+
+**ibus-pinyin**配置项比较全面，然而输入法有一个特性很影响用户体验  
+当我们在中文模式下输入字母以 **u、v、i** 开头时，此时我们想按**shift**切换到英文输入，输入法无法切换过来  
+如中文模式下输入 **u** 时候会出现以下提示，无法直接切换英文打印出 **u**  
+当我们打开一个浏览器或者文本编辑器时，往往不会关注右上角到底是拼音的中文模式还是英文模式，而以字母 **u、i、v** 开头的单词又非常常用，如 **ubuntu**、**int**、**var**  
+**ibus-pinyin**的这种特性大大影响了输入效率
+
+![1d15cfac7ad46403e094dd63e89f7111.png](../_resources/1d15cfac7ad46403e094dd63e89f7111.png)
+
+容易发现以 **u、i、v** 开头都无法构成拼音，因此可以通过 **u、i、v** 编写快捷指令
+
+- **Table Mode**对应字母 **u**：表格模式需要安装相应的 **hspnz** 依赖包，这种模式依赖于预定义的映射表，特定的按键组合直接对应到特定的汉字或词组
+- **Lua Extension**对应字母 **i**：允许用户或开发者编写和加载自定义 **Lua** 脚本
+- **English Mode**对应字母 **v**：英文模式下会无需转换直接输出英文字母
+
+**将这三种输入模式取消勾选即可正常输入**
+
+**![Screenshot from 2025-03-31 12-42-00.png](../_resources/Screenshot%20from%202025-03-31%2012-42-00.png)**

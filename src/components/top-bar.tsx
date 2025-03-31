@@ -16,17 +16,17 @@ export default function TopBar(){
                     <p className="font-bold text-gray-50 font-playwrite text-2xl ml-6">dreak;</p>
                 </Link>
                 <div className="routes h-full w-96 flex items-center justify-center">
-                    <Link href="/">
-                        <p className="font-bold text-gray-50 text-xl mx-4">Home</p>
+                    <Link href="/" className="text-background hover:text-hightlight">
+                        <p className="font-bold text-xl mx-4">Home</p>
                     </Link>
-                    <Link href="/step">
-                        <p className="font-bold text-gray-50 text-xl mx-4">Step</p>
+                    <Link href="/step" className="text-background hover:text-hightlight">
+                        <p className="font-bold text-xl mx-4">Step</p>
                     </Link>
-                    <Link href="/clip">
-                        <p className="font-bold text-gray-50 text-xl mx-4">Clip</p>
+                    <Link href="/clip" className="text-background hover:text-hightlight">
+                        <p className="font-bold text-xl mx-4">Clip</p>
                     </Link>
-                    <Link href="/info">
-                        <p className="font-bold text-gray-50 text-xl mx-4">Info</p>
+                    <Link href="/info" className="text-background hover:text-hightlight">
+                        <p className="font-bold text-xl mx-4">Info</p>
                     </Link>
                 </div>
                 <div className="options h-full w-80 flex justify-end items-center">
@@ -52,10 +52,10 @@ export default function TopBar(){
                     </label>
 
                     <a className="ml-5 cursor-pointer" title="cybermarmot1024@gmail.com">
-                        <MailIcon className="w-6"></MailIcon>
+                        <MailIcon className="w-icon-size"></MailIcon>
                     </a>
                     <a className="ml-5" href="https://github.com/Arcticmarmot" title="https://github.com/Arcticmarmot">
-                        <GithubIcon className="w-6"></GithubIcon>
+                        <GithubIcon className="w-icon-size"></GithubIcon>
                     </a>
                 </div>
             </div>
