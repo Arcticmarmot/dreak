@@ -34,7 +34,7 @@
     --spacing-top-bar: calc(var(--spacing) * 16);
     --spacing-footer-bar: calc(var(--spacing) * 8);
     --spacing-main-height: calc(100vh - (var(--spacing-top-bar) + var(--spacing-footer-bar)));
-    --spacing-main-width: calc(var(--spacing) * 240);
+    --spacing-main-width: calc(var(--spacing) * 280);
     --spacing-icon-size: calc(var(--spacing) * 6);
 
     --color-primary: rgba(4, 4, 54, 0.5);
@@ -42,10 +42,9 @@
     --color-secondary: rgba(251, 251, 201, 0.5);
     --color-dark-secondary: rgba(230, 230, 181, 0.8);
     --color-background: #FFFFFF;
-    --color-dark-background: #121212;
+    --color-dark-background: oklch(0 0 0.93);
     --color-hightlight: rgba(240, 240, 240, 0.5);
-    --color-shadow: rgba(66, 66, 66, 0.5);
-
+    --color-shadow: rgba(166, 166, 166, 0.9);
 
     /*--color-primary: rgba(251, 251, 201, 0.8552);*/
     /*--color-dark-primary: rgba(4, 4, 54, 0.8552);*/

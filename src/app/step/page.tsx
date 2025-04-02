@@ -5,13 +5,14 @@ import {MetadataGroup} from "../../constants/interfaces";
 
 function Group({ group } : { group: MetadataGroup }) {
     return (
-        <div className="w-full mt-10 mb-10">
+        <div className="w-full mt-10 mb-10 px-16">
             <p className="text-3xl font-bold">{group.name}</p>
             <div className="">
                 {group.list.map((item, i) => {
                     return (
                         <div className="mt-5" key={i}>
-                            <Link href={"/step/" + item.filename} key={i} className="flex justify-between items-center px-10">
+                            <Link href={"/step/" + item.filename} key={i} className="flex justify-between items-center px-10
+                                hover:cursor-pointer hover:border-1">
                                 <p className="text-xl pr-5">{item.title}</p>
                                 <div className="h-0.5 flex-1 border-b border-dashed border-spacing-0.5 border-dark-background dark:border-background"></div>
                                 <p className="text-xl pl-5">{item.createTime}</p>

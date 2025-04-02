@@ -10,12 +10,12 @@ export default function TopBar(){
         document.documentElement.classList.toggle('dark');
     }
     return (
-        <div id="top-bar" className="h-top-bar max-w-screen bg-primary dark:bg-dark-primary flex justify-center">
-            <div className="max-w-main-width flex justify-between">
-                <Link href="/" className="logo h-full w-80 flex items-center cursor-pointer">
+        <div id="top-bar" className="h-top-bar w-screen bg-primary dark:bg-dark-primary flex justify-center">
+            <div className="max-w-main-width w-main-width flex justify-between">
+                <Link href="/" className="h-full w-80 flex items-center cursor-pointer">
                     <p className="font-bold text-gray-50 font-playwrite text-2xl ml-6">dreak;</p>
                 </Link>
-                <div className="routes h-full w-96 flex items-center justify-center">
+                <div className="h-full w-96 flex items-center justify-center">
                     <Link href="/" className="text-background hover:text-hightlight">
                         <p className="font-bold text-xl mx-4">Home</p>
                     </Link>

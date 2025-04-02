@@ -5,7 +5,7 @@ import {MetadataGroup} from "../../constants/interfaces";
 
 function Group({ group } : { group: MetadataGroup }) {
     return (
-        <div className="w-full mt-10 mb-10">
+        <div className="w-full mt-10 mb-10 px-16">
             <p className="text-3xl font-bold">{group.name}</p>
             <div className="">
                 {group.list.map((item, i) => {
