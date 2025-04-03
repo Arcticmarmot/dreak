@@ -7,8 +7,9 @@ export default async function Page({
     params: Promise<{ slug: string }>
 }) {
     const { slug } = await params
-    const { default: Post} = await import(`../../../../content/clip/${slug}.mdx`)
-    return <MdxLayout><Post/></MdxLayout>
+    // TODO: 路径错误
+    // const { default: Post} = await import(`../../../../content/clip/${slug}.mdx`)
+    // return <MdxLayout><Post/></MdxLayout>
 }
 
 
