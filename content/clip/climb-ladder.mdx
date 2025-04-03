@@ -1,0 +1,80 @@
+# 一个还在爬楼梯的人
+
+这道题是典型的动态规划的题目
+第一种解法是使用递归方法，也是本题解题的核心思想。
+
+如果要计算到达楼顶需要多少步，那么可以确定的是，到达楼顶前最后一步是要么走了一步，要么走了两步，将这两种情况的方案数加起来就是到达楼顶的总方案数，这样就可以得到动态规划转移方程
+*f(n) = f(n - 1) + f(n - 2)*
+然后再确定边界条件，当阶数为0或者1时，只有一种方案，而当阶数大于等于2时，可直接代入动态规划转移方程中
+
+**解法一：**
+
+```java
+class Solution {
+    public int climbStairs(int n) {
+        if(n < 2) return 1;
+        return climbStairs(n - 1) + climbStairs(n - 2);
+    }
+}
+```
+
+然而这样做会超出题目时间限制，原因在于这样写会造成大量的重复计算。这种情况下可以用dp数组记录函数返回值完成记忆化搜索，于是有了以下解法
+
+**解法二：**
+
+```java
+class Solution {
+    public int climbStairs(int n) {
+        int[] dp = new int[n + 1]; // 定义动态规划dp数组
+        return dfs(n, dp);
+    }
+
+    private int dfs(int n, int[] dp){
+        if(n < 2) return 1;
+        if(dp[n] != 0) return dp[n]; // 若dp数组中已经存储了该函数的返回值，直接返回其值
+        return dp[n] = dfs(n - 1, dp) + dfs(n - 2, dp); // 否则计算该函数的返回值，并存储到dp中以避免重复计算
+    }
+}
+```
+
+这道题还可以换个思路，dp数组中的元素对应递归函数的返回值，可以得到
+*dp[n] = dp[n - 1] + dp[n - 2]*
+这就有点类似斐波拉契数列的思想了，那么直接计算dp数组的值就可以省去递归调用的开销
+
+**解法三：**
+
+```java
+class Solution {
+    public int climbStairs(int n) {
+        int[] dp = new int[n + 1];
+        dp[0] = 1;
+        dp[1] = 1;
+        for(int i = 2; i <= n; i++){
+            dp[i] = dp[i - 1] + dp[i - 2];
+        }
+        return dp[n];
+    }
+}
+```
+
+由于这道题只需要得到最终到达楼顶的方法数，也就是说我们只需要得到dp数组中最大下标的值，而我们去存储其他元素的值只是为了计算。观察以上代码在计算过程中，一旦dp[i]计算出来，那么dp[i - 2]以及之前的元素就不会再被用到了，也就是说只需要两个变量不断计算并更新自身的值就可以实现
+这种思想被称作**滚动数组思想**，简单来说就是在dp方程中找到一种关系，可以用新的数据不断覆盖旧的数据来减少空间的使用
+
+**解法四：**
+
+```java
+class Solution {
+    // 滚动数组
+    public int climbStairs(int n) {
+        int first = 1; // first用来指second前一个元素，初始指向dp[0]
+				int second = 1; // second用来指first下一个元素，初始指向dp[1]
+        // 循环次数表示向后滚动的次数
+        for(int i = 1; i < n; i++){
+            int temp = second;
+            second = first + second; // second滚动到下一个元素的值
+            first = temp; // first滚动到下一个元素的值
+        }
+        return second;
+    }
+}
+```
