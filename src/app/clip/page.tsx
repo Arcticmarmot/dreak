@@ -28,7 +28,7 @@ export default function Page() {
     const groups = GenerateClipGroups();
     return (
         <div className="max-w-main-width w-main-width h-main-height pt-10">
-            <p className="text-4xl font-bold flex justify-center">Step</p>
+            <p className="text-4xl font-bold flex justify-center">Clip</p>
             {groups.map((group, i) => {
                 return (
                     <Group group={group} key={i}></Group>

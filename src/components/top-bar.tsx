@@ -10,23 +10,24 @@ export default function TopBar(){
         document.documentElement.classList.toggle('dark');
     }
     return (
-        <div id="top-bar" className="h-top-bar w-screen bg-primary dark:bg-dark-primary flex justify-center">
-            <div className="max-w-main-width w-main-width flex justify-between">
+        // <div id="top-bar" className="h-top-bar w-screen bg-primary dark:bg-dark-primary flex justify-center">
+        <div id="top-bar" className="h-top-bar w-screen bg-background dark:bg-dark-background flex justify-center">
+            <div className="max-w-main-width w-main-width flex justify-between text-dark-background dark:text-background">
                 <Link href="/" className="h-full w-80 flex items-center cursor-pointer">
-                    <p className="font-bold text-gray-50 font-playwrite text-2xl ml-6">dreak;</p>
+                    <p className="font-bold font-playwrite text-2xl ml-6">dreak;</p>
                 </Link>
                 <div className="h-full w-96 flex items-center justify-center">
-                    <Link href="/" className="text-background hover:text-hightlight">
-                        <p className="font-bold text-xl mx-4">Home</p>
+                    <Link href="/" className="">
+                        <p className=" text-xl mx-4">Home</p>
                     </Link>
-                    <Link href="/step" className="text-background hover:text-hightlight">
-                        <p className="font-bold text-xl mx-4">Step</p>
+                    <Link href="/step" className="">
+                        <p className=" text-xl mx-4">Step</p>
                     </Link>
-                    <Link href="/clip" className="text-background hover:text-hightlight">
-                        <p className="font-bold text-xl mx-4">Clip</p>
+                    <Link href="/clip" className="">
+                        <p className=" text-xl mx-4">Clip</p>
                     </Link>
-                    <Link href="/info" className="text-background hover:text-hightlight">
-                        <p className="font-bold text-xl mx-4">Info</p>
+                    <Link href="/info" className="">
+                        <p className=" text-xl mx-4">Info</p>
                     </Link>
                 </div>
                 <div className="options h-full w-80 flex justify-end items-center">
@@ -36,18 +37,19 @@ export default function TopBar(){
                                className="sr-only peer"
                                onChange={toggleDarkMode}
                         />
-                        <div className="relative w-11 h-6 rounded-full
-                        bg-background dark:bg-dark-background
-                        peer-focus:ring-0 peer-focus:ring-primary dark:peer-focus:ring-dark-primary
-                        peer-checked:after:translate-x-full
-                        rtl:peer-checked:after:-translate-x-full
-                        peer-checked:bg-primary dark:peer-checked:bg-dark-primary
-                        peer-checked:after:border-white
-                        after:content-[''] after:absolute after:top-0.5 after:start-[2px]
-                        after:bg-background
-                        after:border-gray-300 after:border
-                        after:rounded-full after:h-5 after:w-5
-                        after:transition-all dark:border-gray-600 ">
+                        <div className="relative w-11 h-7 rounded-full
+                            bg-primary dark:bg-background
+                            peer-focus:ring-0 peer-focus:ring-dark-background dark:peer-focus:ring-background
+                            peer-checked:after:translate-x-4
+                            rtl:peer-checked:after:-translate-x-4
+                            after:content-[url('/icons/sun.svg')]
+                            peer-checked:after:content-[url('/icons/moon.svg')]
+                            after:absolute after:top-0.5 after:start-[2px]
+                            after:bg-background dark:after:bg-dark-primary
+                            after:rounded-full after:h-6 after:w-6
+                            after:transition-all
+                            {/*peer-checked:bg-background dark:peer-checked:bg-background*/}
+                            ">
                         </div>
                     </label>
 

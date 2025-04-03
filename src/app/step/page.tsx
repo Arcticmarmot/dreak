@@ -12,7 +12,7 @@ function Group({ group } : { group: MetadataGroup }) {
                     return (
                         <div className="mt-5" key={i}>
                             <Link href={"/step/" + item.filename} key={i} className="flex justify-between items-center px-10
-                                hover:cursor-pointer hover:border-1">
+                                hover:cursor-pointer">
                                 <p className="text-xl pr-5">{item.title}</p>
                                 <div className="h-0.5 flex-1 border-b border-dashed border-spacing-0.5 border-dark-background dark:border-background"></div>
                                 <p className="text-xl pl-5">{item.createTime}</p>
